@@ -1,11 +1,12 @@
-import  express  from "express";
+import express  from "express";
 import data from "./data.js";
-import  logger  from "./config/logger.js";
+import logger  from "./config/logger.js";
 
 const app = express();
 
 app.get("/api/product", (req, res) => {
-  res.send(data.products);
+    logger.info("Request received");
+    res.send(data.products);
 });
 
 const port = process.env.PORT || 5000;
