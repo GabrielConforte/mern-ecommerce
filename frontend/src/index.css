@@ -17,3 +17,32 @@ header a{
   text-decoration: none;
   font-weight: bold;
 }
+
+a{
+  text-decoration: none;
+}
+
+main h1{
+  padding: 1rem;
+}
+
+/*clases para los productos*/
+.productoContenedor{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.productoItem{
+  border: 2px #ccc solid;
+  margin: 1rem;
+}
+
+.productoItem img{
+  max-width: 400px;
+  width: 100%;
+}
+
+.productInfo{
+  padding: 1rem;
+}
