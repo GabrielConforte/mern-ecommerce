@@ -7,12 +7,11 @@ import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
 import { useContext } from 'react';
 import { Store } from './screens/Store';
 
-//componentes bootstrap
+//componentes
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Badge from 'react-bootstrap/Badge';
 import Container from 'react-bootstrap/Container';
 import {LinkContainer} from 'react-router-bootstrap';
+import CartWidget from './components/CartWidget';
 
 //paginas
 import Home from './screens/Home';
@@ -32,14 +31,7 @@ function App() {
               <LinkContainer to="/">
                 <Navbar.Brand>Home</Navbar.Brand>
               </LinkContainer>
-              <Nav>
-                <Link to="/cart" className="nav-link">
-                <i class="fa-solid fa-cart-shopping"></i>
-                    <Badge>
-                        {cart.items.length}
-                    </Badge>
-                    </Link>
-              </Nav>
+              <CartWidget cart={cart}/>
             </Container>
           </Navbar>
         
@@ -59,6 +51,3 @@ function App() {
 }
 
 export default App;
-
-
-//<i class="fa-solid fa-cart-shopping"></i>

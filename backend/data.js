@@ -1,6 +1,7 @@
 const data = {
     products: [
-        {name:
+        {   _id: '1',
+            name:
             'Cafe',
             price: 10,
             slug: 'product-1',
@@ -10,7 +11,9 @@ const data = {
             rating: 4.5,
             numReviews: 10,
         },
-        {name:
+        {   
+            _id: '2',
+            name:
             'Pizza',
             price: 20,
             slug: 'product-2',
@@ -20,7 +23,9 @@ const data = {
             rating: 4.5,
             numReviews: 10,
         },
-        {name:
+        {   
+            _id: '3',
+            name:
             'Donas',
             price: 30,
             slug: 'product-3',

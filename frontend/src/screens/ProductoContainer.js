@@ -47,9 +47,15 @@ function ProductoContainer(){
       }, [slug]);
 
     const {state, dispatch: ctxDispatch} = useContext(Store);
-
-    function addToCart(product){
-        ctxDispatch({type: "ADD_TO_CART", payload: {...product, cant: 1}});
+    const {cart} = state;
+    async function addToCart(){
+        const exist = cart.items.find((item) => item._id === product._id);
+        const cant = exist ? exist.cant + 1 : 1;
+        const {data} = await axios.get(`/api/product/${product._id}`);
+        if(cant > data.stock){
+            return window.alert('No hay stock suficiente');
+        }
+        ctxDispatch({type: "ADD_TO_CART", payload: {...product, cant}});
     }
 
     return(
