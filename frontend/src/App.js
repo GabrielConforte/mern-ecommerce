@@ -3,10 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 //router y servicios
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+import { useContext } from 'react';
+import { Store } from './screens/Store';
 
 //componentes bootstrap
 import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Badge from 'react-bootstrap/Badge';
 import Container from 'react-bootstrap/Container';
 import {LinkContainer} from 'react-router-bootstrap';
 
@@ -16,6 +20,9 @@ import ProductoContainer from './screens/ProductoContainer';
 
 
 function App() {
+
+  const {state} = useContext(Store);
+  const {cart} = state;
   return (
     <BrowserRouter>
     <div className='d-flex flex-column site-content'>
@@ -25,6 +32,14 @@ function App() {
               <LinkContainer to="/">
                 <Navbar.Brand>Home</Navbar.Brand>
               </LinkContainer>
+              <Nav>
+                <Link to="/cart" className="nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                    <Badge>
+                        {cart.items.length}
+                    </Badge>
+                    </Link>
+              </Nav>
             </Container>
           </Navbar>
         
@@ -44,3 +59,6 @@ function App() {
 }
 
 export default App;
+
+
+//<i class="fa-solid fa-cart-shopping"></i>
