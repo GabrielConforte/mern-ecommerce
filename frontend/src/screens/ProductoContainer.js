@@ -5,6 +5,9 @@ import { Row, Col, Card, Badge } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import Rating from '../components/Rating';
 import { Helmet } from "react-helmet-async";
+import Loading from '../components/Loading';
+import Info from '../components/Info';
+import { getErrorMsj } from '../utils/errorMsj';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -35,7 +38,7 @@ function ProductoContainer(){
             const result = await axios.get(`/api/product/slug/${slug}`);
             dispatch({type: "FETCH_SUCCESS", payload: result.data});
           } catch (error) {
-            dispatch({type: "FETCH_FAIL", payload: error.message});
+            dispatch({type: "FETCH_FAIL", payload: getErrorMsj(error)});
           }
       
         }
@@ -44,8 +47,10 @@ function ProductoContainer(){
 
 
     return(
-        loading ? <div> Cargando info.... </div> :
-        error ? <div> {error} </div> :
+         loading? <div 
+            className="mt-4 d-flex justify-content-center align-items-center"
+         > <Loading/> </div>
+        : error? <Info variant="danger">{error}</Info> :
         <div className="productoContenedor">
             <Row>
                 <Col md={6}>

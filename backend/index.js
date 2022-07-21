@@ -17,7 +17,7 @@ app.get("/api/product/slug/:slug", (req, res) => {
     logger.info("Product found -> " + product.name);
 }
     else{
-        res.status(404).send({message: "Product not found"});
+        res.status(404).send({message: "Producto " + req.params.slug + " no encontrado"});
     }
 });
 

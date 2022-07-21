@@ -1,8 +1,10 @@
 import {useEffect, useReducer } from "react";
 import axios from "axios";
 import  ItemList  from "../components/ItemList";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 import {Helmet} from "react-helmet-async";
+import Loading from "../components/Loading";
+import Info from "../components/Info";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -44,8 +46,8 @@ useEffect(() => {
       </Helmet>
       <h1>Destacados</h1>
         <div className="productoContenedor">
-          { loading? <div> Cargando info.... </div>
-          : error? <div> {error} </div>
+          { loading? <Loading/>
+          : error? <Info variant="danger">{error}</Info>
           : 
           <Row>
           {products.map(product => (
