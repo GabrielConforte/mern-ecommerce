@@ -3,7 +3,7 @@ export const Store = createContext();
 
 const initialState = {
     cart: {
-        items: [],
+        items: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
     }
 }
 
@@ -21,10 +21,21 @@ function reducer(state, action) {
                 item //si existia, se agrega el item existente que le suma 1 a la cantidad
             )
           : [...state.cart.items, newItem]; //si no existia, se agrega el item nuevo al carrito
+          localStorage.setItem("cart", JSON.stringify(cartItems));//se guarda en el localstorage
         return { ...state,
             cart: {
                 items: cartItems,//retorna el carrito con los items agregados
             } } ;
+        case "REMOVE_ITEM":
+        const items = state.cart.items.filter( //se filtra el carrito para quitar el item que se quiere quitar
+          (item) => item._id !== action.payload._id
+        );
+        localStorage.setItem("cart", JSON.stringify(items));//se guarda en el localstorage
+        return { ...state,
+            cart: {
+                items: items,
+            } };
+          
         default:
             return state;
     }

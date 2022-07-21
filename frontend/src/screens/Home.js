@@ -1,8 +1,13 @@
+//funcionalidades de react
 import {useEffect, useReducer } from "react";
+
+//servicios y dependencias
+import {Helmet} from "react-helmet-async";
 import axios from "axios";
+
+//componentes
 import  ItemList  from "../components/ItemList";
 import { Row, Col} from "react-bootstrap";
-import {Helmet} from "react-helmet-async";
 import Loading from "../components/Loading";
 import Info from "../components/Info";
 

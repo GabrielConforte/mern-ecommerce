@@ -5,7 +5,7 @@ import './index.css';
 //router y servicios
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
 import { useContext } from 'react';
-import { Store } from './screens/Store';
+import { Store } from './utils/Store';
 
 //componentes
 import Navbar from 'react-bootstrap/Navbar';
@@ -16,6 +16,8 @@ import CartWidget from './components/CartWidget';
 //paginas
 import Home from './screens/Home';
 import ProductoContainer from './screens/ProductoContainer';
+import Carrito from './screens/Carrito';
+import SingIn from './screens/SingIn';
 
 
 function App() {
@@ -41,6 +43,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/product/:slug" element={<ProductoContainer/>} />
+          <Route path="/carrito" element={<Carrito/>} />
+          <Route path="/singin" element={<SingIn/>} />
         </Routes>
         </Container>
         </main>

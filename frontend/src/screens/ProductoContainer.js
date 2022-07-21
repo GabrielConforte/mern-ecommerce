@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useReducer, useContext } from 'react';
 import axios from "axios";
 import { Row, Col, Card, Badge } from "react-bootstrap";
@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 import Loading from '../components/Loading';
 import Info from '../components/Info';
 import { getErrorMsj } from '../utils/errorMsj';
-import { Store } from '../screens/Store';
+import { Store } from '../utils/Store';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -24,6 +24,8 @@ const reducer = (state, action) => {
   };
 
 function ProductoContainer(){
+    
+    const Navigate = useNavigate();
     const params = useParams();
     const {slug} = params;
 
@@ -56,6 +58,7 @@ function ProductoContainer(){
             return window.alert('No hay stock suficiente');
         }
         ctxDispatch({type: "ADD_TO_CART", payload: {...product, cant}});
+        Navigate('/carrito');
     }
 
     return(
