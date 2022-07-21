@@ -1,6 +1,8 @@
 import {useEffect, useReducer } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import  ItemList  from "../components/ItemList";
+import { Row, Col } from "react-bootstrap";
+import {Helmet} from "react-helmet-async";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -37,25 +39,23 @@ useEffect(() => {
 }, []);
   return (
     <div>
+      <Helmet>
+        <title>Inicio</title>
+      </Helmet>
       <h1>Destacados</h1>
         <div className="productoContenedor">
           { loading? <div> Cargando info.... </div>
           : error? <div> {error} </div>
-          : products.map(product => (
-            <div className="productoItem" key={product.slug}>
-              <Link to={`/product/${product.slug}`}>
-              <img src={product.image} alt={product.name} />
-              </Link>
-              <div className="productInfo">
-              <Link to={`/product/${product.slug}`}>
-               <h3>{product.name}</h3>
-                <p>{product.description}</p>
-                <p>${product.price}</p>
-              </Link>
-                <button>Añadir a Carrito</button>
-              </div>
-            </div>
+          : 
+          <Row>
+          {products.map(product => (
+            <Col key={product.slug} sm={6} md={4}>
+            <ItemList product={product}/>
+            </Col>
           ))
+        
+          }
+          </Row>
         }</div>
     </div>
   );

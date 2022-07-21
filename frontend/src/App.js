@@ -29,7 +29,7 @@ function App() {
           </Navbar>
         
       </header>
-      <main>
+      <main className='mt-2'>
         <Container>
         <Routes>
           <Route path="/" element={<Home/>} />
