@@ -118,3 +118,13 @@ main{
   display: flex;
   flex-direction: column;
 }
+
+.barraProgreso > div{
+  border-bottom: 0.2rem solid rgb(134, 134, 134);
+  color : rgb(134, 134, 134);
+}
+
+.barraProgreso > div.active{
+  border-bottom: 0.2rem solid rgb(212, 96, 19);
+  color : rgb(212, 96, 19);
+}

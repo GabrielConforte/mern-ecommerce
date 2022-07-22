@@ -20,6 +20,7 @@ import Home from './screens/Home';
 import ProductoContainer from './screens/ProductoContainer';
 import Carrito from './screens/Carrito';
 import SingIn from './screens/SingIn';
+import SingUp from './screens/SingUp';
 import Shipping from './screens/Shipping';
 
 
@@ -49,6 +50,7 @@ function App() {
           <Route path="/carrito" element={<Carrito/>} />
           <Route path="/singin" element={<SingIn/>} />
           <Route path="/shipping" element={<Shipping/>} />
+          <Route path="/singup" element={<SingUp/>} />
         </Routes>
         </Container>
         </main>

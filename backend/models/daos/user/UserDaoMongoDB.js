@@ -6,8 +6,8 @@ class UserDaoMongoDB extends ContenedorMongoDB {
             nombre: {type: String, required: true},
             email: {type: String, required: true, unique: true},
             password: {type: String, required: true},
-            isAdmin: {type: Boolean, defalut: false, required: true},
-            img: {type: String, required: true},
+            isAdmin: {type: Boolean, defalut: false},
+            img: {type: String,}
             }
             ,{
                 timestamps: true,

@@ -32,4 +32,22 @@ userRouter.post("/signin", expressAsyncHandler(async (req, res) => {
     }
     ));
 
+userRouter.post(
+    "/signup",
+    expressAsyncHandler(async (req, res) => {
+        const nuevoUser = req.body;
+        nuevoUser.password = bcrypt.hashSync(nuevoUser.password);
+        const user = await userDao.save(nuevoUser);
+        res.send({ 
+            _id: user._id,
+            nombre: user.nombre,
+            email: user.email,
+            isAdmin: false,
+            token: generateToken(user),
+            message: "Usuario creado correctamente"
+            }
+            );
+        }
+    ));
+
 export default userRouter;

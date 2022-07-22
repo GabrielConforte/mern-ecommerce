@@ -3,19 +3,20 @@ import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { Form } from 'react-bootstrap'
 import { Store } from '../utils/Store'
+import CheckoutProgress from '../components/CheckoutProgress'
 
 export default function Shipping() {
     const Navigate = useNavigate();
     const { state, dispatch: ctxDispatch } = useContext(Store);
 
     const {userInfo, cart: {shipping} } = state;
-
-    const [name, setName] = useState(shipping.fullName || '' );
-    const [address, setAddress] = useState(shipping.address ||'');
-    const [city, setCity] = useState(shipping.city || '');
-    const [prov, setProv] = useState(shipping.prov || '');
-    const [zip, setZip] = useState(shipping.zip ||'');
-    const [phone, setPhone] = useState(shipping.phone || '');
+    
+    const [name, setName] = useState(shipping ? shipping.name : ' ' );
+    const [address, setAddress] = useState(shipping ? shipping.address : ' ' );
+    const [city, setCity] = useState(shipping ? shipping.city : ' ' );
+    const [prov, setProv] = useState(shipping ? shipping.prov : ' ' );
+    const [zip, setZip] = useState(shipping ? shipping.zip : ' ' );
+    const [phone, setPhone] = useState(shipping ? shipping.phone : ' ' );
 
     const submit = async (e) => {
         e.preventDefault();
@@ -25,14 +26,16 @@ export default function Shipping() {
 
     useEffect(() => {
         if(!userInfo) {
-            Navigate('/singin?redirect=shipping');
+            Navigate('/singin');
         }
     }, [userInfo, Navigate]);
 
   return (
     <div><Helmet>Envio</Helmet>
+    <CheckoutProgress step1 step2></CheckoutProgress>
     <div className='loginContenedor'>
         <h1>Envio</h1>
+      
         <Form onSubmit={submit}>
             <Form.Group className='mb-3' controlId='name'>
                 <Form.Label>Nombre Completo</Form.Label>
