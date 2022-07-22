@@ -1,33 +1,15 @@
 import express  from "express";
-import data from "./data.js";
 import logger  from "./config/logger.js";
+import rutasProductos from "./routes/rutasProductos.js";
 
 const app = express();
-app.get("/api/product", (req, res) => {
-    logger.info("Request received");
-    res.send(data.products);
-});
 
-app.get("/api/product/slug/:slug", (req, res) => {
-    logger.info("Request received");
-    const product = data.products.find(product => product.slug === req.params.slug);
-    if(product){
-    res.send(product);
-    logger.info("Producto encontrado -> " + product.name);
-}
-    else{
-        res.status(404).send({message: "Producto " + req.params.slug + " no encontrado"});
-    }
-});
 
-app.get("/api/product/:id", (req, res) => {
-    const product = data.products.find(product => product._id === req.params.id);
-    if (product) {
-        res.send(product);
-    } else {
-        res.status(404).send({ message: 'Product Not Found' });
-    }
-  });
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+app.use('/api/product', rutasProductos);
 
 const port = process.env.PORT || 5000;
 

@@ -35,7 +35,7 @@ function ItemList(props){
           <Rating rating={product.rating} reviews={product.numReviews}></Rating>
         </Link>
         <Card.Text>${product.price} + {product.stock}</Card.Text>
-        {product.stock === 0 ? <button className="btn-custom btn-cart bg-secondary rounded" dissabled > no hay stock </button> : 
+        {product.stock === 0 ? <button className="btn-custom btn-cart bg-secondary rounded" dissabled="true" > no hay stock </button> : 
         <button className="btn-custom btn-cart" onClick={()=> addCart(product)}> Añadir al carrito</button>}
       </Card.Body>
     </Card>
