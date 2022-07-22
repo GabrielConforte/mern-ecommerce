@@ -10,8 +10,9 @@ export default function Shipping() {
     const { state, dispatch: ctxDispatch } = useContext(Store);
 
     const {userInfo, cart: {shipping} } = state;
-    
-    const [name, setName] = useState(shipping ? shipping.name : ' ' );
+    const [name, setName] = useState(
+        shipping ? shipping.name : ''
+    );
     const [address, setAddress] = useState(shipping ? shipping.address : ' ' );
     const [city, setCity] = useState(shipping ? shipping.city : ' ' );
     const [prov, setProv] = useState(shipping ? shipping.prov : ' ' );
@@ -39,27 +40,27 @@ export default function Shipping() {
         <Form onSubmit={submit}>
             <Form.Group className='mb-3' controlId='name'>
                 <Form.Label>Nombre Completo</Form.Label>
-                <Form.Control type='text' placeholder='Nombre Completo' required onChange={(e)=> setName(e.target.value)} />
+                <Form.Control type='text' placeholder='Nombre Completo' value={name} onChange={(e)=> setName(e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='address'>
                 <Form.Label>Direccion</Form.Label>
-                <Form.Control type='text' placeholder='Direccion' required onChange={(e)=> setAddress(e.target.value)} />
+                <Form.Control type='text' placeholder='Direccion' value={address} onChange={(e)=> setAddress(e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='phone'>
                 <Form.Label>Telefono</Form.Label>
-                <Form.Control type='text' placeholder='Telefono' required onChange={(e)=> setPhone(e.target.value)} />
+                <Form.Control type='text' placeholder='Telefono' value={phone} onChange={(e)=> setPhone(e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='city'>
                 <Form.Label>Ciudad</Form.Label>
-                <Form.Control type='text' placeholder='Ciudad' required onChange={(e)=> setCity(e.target.value)} />
+                <Form.Control type='text' placeholder='Ciudad' value={city} onChange={(e)=> setCity(e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='zip'>
                 <Form.Label>Codigo Postal</Form.Label>
-                <Form.Control type='text' placeholder='Codigo Postal' required  onChange={(e)=> setZip(e.target.value)} />
+                <Form.Control type='text' placeholder='Codigo Postal'  value={zip} required  onChange={(e)=> setZip(e.target.value)} />
             </Form.Group>
             <Form.Group className='mb-3' controlId='prov'>
                 <Form.Label>Provincia</Form.Label>
-                <Form.Control type='text' placeholder='Provincia' required onChange={(e)=> setProv(e.target.value)} />
+                <Form.Control type='text' placeholder='Provincia'  value={prov} required onChange={(e)=> setProv(e.target.value)} />
             </Form.Group>
             <div>
                 <button type="submit" className="btn-custom btn-cart">Enviar</button>

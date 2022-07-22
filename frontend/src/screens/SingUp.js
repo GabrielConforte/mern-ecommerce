@@ -11,7 +11,7 @@ export default function SingUp() {
     const { search } = useLocation();
     const redirectInUrl = new URLSearchParams(search).get('redirect');
     const redirect = redirectInUrl ? redirectInUrl : '/';
-    const [nombre, setNombre] = useState('');
+    const [nombre, setNombre] = useState( '');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordB, setPasswordB] = useState('');

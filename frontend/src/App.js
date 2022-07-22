@@ -22,6 +22,7 @@ import Carrito from './screens/Carrito';
 import SingIn from './screens/SingIn';
 import SingUp from './screens/SingUp';
 import Shipping from './screens/Shipping';
+import MetodoPago from './screens/MetodoPago';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
         <Navbar className='rounded' bg="" variant="dark">
             <Container>
               <LinkContainer to="/">
-                <Navbar.Brand>Home</Navbar.Brand>
+                <Navbar.Brand>Home <i class="fa-solid fa-child"></i></Navbar.Brand>
               </LinkContainer>
               <TabBar/>
             </Container>
@@ -51,6 +52,7 @@ function App() {
           <Route path="/singin" element={<SingIn/>} />
           <Route path="/shipping" element={<Shipping/>} />
           <Route path="/singup" element={<SingUp/>} />
+          <Route path="/payment" element={<MetodoPago/>} />
         </Routes>
         </Container>
         </main>

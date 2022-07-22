@@ -12,6 +12,7 @@ export default function TabBar(props) {
         ctxDispatch({type: 'USER_LOGOUT'});
         localStorage.removeItem('userInfo');
         localStorage.removeItem('shipping');
+        localStorage.removeItem('metodoPago');
     }
 
   return (
