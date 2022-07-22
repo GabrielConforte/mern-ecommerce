@@ -33,7 +33,7 @@ export default function Carrito() {
     }
 
     const checkout = async () => {
-        Navigate('/singin?redirect=/checkout');
+        Navigate('/singin?redirect=/shipping');
     }
 
   return (

@@ -1,5 +1,5 @@
 import React, { useEffect , useState , useContext} from 'react'
-import { Container, Form, Col,} from 'react-bootstrap'
+import { Container, Form} from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import { useLocation, Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
@@ -21,7 +21,7 @@ export default function SingIn() {
         if (userInfo) {
             Navigate(redirect);
             }
-            }, [state.userInfo, Navigate, redirect]);
+            }, [userInfo, Navigate, redirect]);
 
     const funcionSubmit = async (e) => {
         e.preventDefault();
@@ -32,6 +32,7 @@ export default function SingIn() {
             });
             ctxDispatch({type: 'USER_LOGIN', payload: data});
             localStorage.setItem('userInfo', JSON.stringify(data));
+            
             Navigate(redirect||'/');
         }catch(error){
             toast.error(error.response.data.message);

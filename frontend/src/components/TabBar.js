@@ -1,5 +1,5 @@
 import React from 'react'
-import { Nav, Badge, NavDropdown, NavLink} from 'react-bootstrap'
+import { Nav, Badge, NavDropdown} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
 import { Store } from '../utils/Store';
@@ -11,6 +11,7 @@ export default function TabBar(props) {
     const signout = () => {
         ctxDispatch({type: 'USER_LOGOUT'});
         localStorage.removeItem('userInfo');
+        localStorage.removeItem('shipping');
     }
 
   return (

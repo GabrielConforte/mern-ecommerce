@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 
 //router y servicios
-import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 //import { useContext } from 'react';
 //import { Store } from './utils/Store';
 
@@ -20,6 +20,7 @@ import Home from './screens/Home';
 import ProductoContainer from './screens/ProductoContainer';
 import Carrito from './screens/Carrito';
 import SingIn from './screens/SingIn';
+import Shipping from './screens/Shipping';
 
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
           <Route path="/product/:slug" element={<ProductoContainer/>} />
           <Route path="/carrito" element={<Carrito/>} />
           <Route path="/singin" element={<SingIn/>} />
+          <Route path="/shipping" element={<Shipping/>} />
         </Routes>
         </Container>
         </main>
