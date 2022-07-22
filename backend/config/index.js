@@ -17,6 +17,10 @@ let cors = {
     cors: process.env.CLIENT_URL,
 }
 
-const varEnv ={ config, mongo_db, cors };
+let secret = {
+    secret_key: process.env.JWT_SECRET_KEY,
+}
+
+const varEnv ={ config, mongo_db, cors, secret };
 
 export default varEnv;

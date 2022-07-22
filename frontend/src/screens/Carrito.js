@@ -11,7 +11,7 @@ import { Store } from '../utils/Store'
 import { Row, Col, ListGroup, Card} from 'react-bootstrap'
 import Info from '../components/Info'
 import { Link, useNavigate } from 'react-router-dom'
-
+import { toast } from 'react-toastify';
 
 export default function Carrito() {
     const Navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function Carrito() {
     const updateCart = async (item, cant) => {
         const { data } = await axios.get(`/api/product/${item._id}`);
         if(cant === data.stock){
-            return window.alert('No hay stock suficiente');
+            return toast.error('No hay stock suficiente');
         }
         ctxDispatch({type: "ADD_TO_CART", payload: {...item, cant}});
     }

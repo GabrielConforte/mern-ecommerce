@@ -9,6 +9,7 @@ import Loading from '../components/Loading';
 import Info from '../components/Info';
 import { getErrorMsj } from '../utils/errorMsj';
 import { Store } from '../utils/Store';
+import { toast } from 'react-toastify';
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -55,7 +56,7 @@ function ProductoContainer(){
         const cant = exist ? exist.cant + 1 : 1;
         const {data} = await axios.get(`/api/product/${product._id}`);
         if(cant > data.stock){
-            return window.alert('No hay stock suficiente');
+            return toast.error('No hay stock suficiente');
         }
         ctxDispatch({type: "ADD_TO_CART", payload: {...product, cant}});
         Navigate('/carrito');

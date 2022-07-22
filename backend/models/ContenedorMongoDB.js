@@ -43,9 +43,8 @@ class ContenedorMongoDB {
 
 	async save(objeto) {
 		try {
-			logger.info(objeto)
 			await this.collection.create(objeto);
-			return objeto.title;
+			return objeto;
 		} catch (error) {
 			if (error.code == 11000) {
 				return "El objeto ya existe";
@@ -69,8 +68,8 @@ class ContenedorMongoDB {
 	async delete(id) {
 		try {
 			logger.info(`se va a eliminar el id: ${id}`);
-			const data = await this.collection.findOneAndDelete({"id": id});
-			return data.title;
+			const data = await this.collection.findOneAndDelete({_id: id});
+			return data;
 		} catch (error) {
 			logger.error("no se puede eliminar");
 		}

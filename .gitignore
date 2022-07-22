@@ -24,3 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .env.*
+
+#ignora el archivo seedRoutes.js del backend
+seedRoutes.js

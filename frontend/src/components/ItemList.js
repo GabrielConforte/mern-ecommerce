@@ -4,6 +4,7 @@ import Rating from "./Rating";
 import { Store } from "../utils/Store";
 import axios from "axios";
 import { useContext } from "react";
+import { toast } from 'react-toastify'
 
 function ItemList(props){
 
@@ -18,7 +19,7 @@ function ItemList(props){
         const cant = exist ? exist.cant + 1 : 1;
         const {data} = await axios.get(`/api/product/${product._id}`);
         if(cant === data.stock){
-            return window.alert('No hay stock suficiente');
+            return toast.error('No hay stock suficiente');
         }
         ctxDispatch({type: "ADD_TO_CART", payload: {...item, cant}});
     }

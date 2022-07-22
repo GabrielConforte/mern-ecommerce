@@ -4,14 +4,16 @@ import './index.css';
 
 //router y servicios
 import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
-import { useContext } from 'react';
-import { Store } from './utils/Store';
+//import { useContext } from 'react';
+//import { Store } from './utils/Store';
 
 //componentes
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import {LinkContainer} from 'react-router-bootstrap';
-import CartWidget from './components/CartWidget';
+import TabBar from './components/TabBar';
 
 //paginas
 import Home from './screens/Home';
@@ -22,18 +24,18 @@ import SingIn from './screens/SingIn';
 
 function App() {
 
-  const {state} = useContext(Store);
-  const {cart} = state;
+  //const {state} = useContext(Store);
   return (
     <BrowserRouter>
     <div className='d-flex flex-column site-content'>
+      <ToastContainer position='top-center' limit={1}/>
       <header className="App-header rounde">
         <Navbar className='rounded' bg="" variant="dark">
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand>Home</Navbar.Brand>
               </LinkContainer>
-              <CartWidget cart={cart}/>
+              <TabBar/>
             </Container>
           </Navbar>
         

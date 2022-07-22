@@ -32,4 +32,35 @@ rutasProductos.get("/:id", async (req, res) => {
     }
   });
 
+rutasProductos.post("/", async (req, res) => {
+        const product = await productosDao.save(req.body);
+        console.log(product);
+        if (product) {
+            res.send(product);
+        } else {
+            res.status(404).send({ message: 'no se pudo guardar el producto' });
+        }
+    }
+    );
+
+rutasProductos.put("/:id", async (req, res) => {
+        const product = await productosDao.editById(req.params.id, req.body);
+        if (product) {
+            res.send(product);
+        } else {
+            res.status(404).send({ message: 'no se pudo editar el producto' });
+        }
+    }
+    );
+
+rutasProductos.delete("/:id", async (req, res) => {
+        const product = await productosDao.delete(req.params.id);
+        if (product) {
+            res.send(product);
+        } else {
+            res.status(404).send({ message: 'no se pudo eliminar el producto' });
+        }
+    }
+    );
+
 export default rutasProductos;
