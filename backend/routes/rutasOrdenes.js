@@ -21,7 +21,7 @@ rutasOrdenes.post("/", isAuth ,expressAsyncHandler(async (req, res) => {
 }
 ));
 
-rutasOrdenes.get("/:userId", async (req, res) => {
+rutasOrdenes.get("/user/:userId", async (req, res) => {
     const orden = await ordenesDao.getByUserId(req.params.userId);
     if (orden) {
         res.send(orden);
@@ -30,5 +30,16 @@ rutasOrdenes.get("/:userId", async (req, res) => {
     }
 }
 );
+
+rutasOrdenes.get("/:id", async (req, res) => {
+    const orden = await ordenesDao.getById(req.params.id);
+    if (orden) {
+        res.send(orden);
+    } else {
+        res.status(404).send({ message: 'no se pudo encontrar la orden' });
+    }
+}
+);
+
 
 export default rutasOrdenes;

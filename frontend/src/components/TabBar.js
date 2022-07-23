@@ -34,7 +34,7 @@ export default function TabBar(props) {
                         Pedidos
                     </Link >
                     <NavDropdown.Divider/>
-                     <Link className='p-2' to="#logout" onClick={signout}>
+                     <Link className='p-2' to="/singin" onClick={signout}>
                        Cerrar Sesion
                     </Link >
                 </NavDropdown>

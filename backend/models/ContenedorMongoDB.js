@@ -43,8 +43,9 @@ class ContenedorMongoDB {
 
 	async save(objeto) {
 		try {
-			await this.collection.create(objeto);
-			return objeto;
+			let a = await this.collection.create(objeto);
+			console.log(a._id);
+			return a;
 		} catch (error) {
 			if (error.code == 11000) {
 				return "El objeto ya existe";

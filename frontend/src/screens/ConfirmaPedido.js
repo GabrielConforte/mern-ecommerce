@@ -47,8 +47,9 @@ export default function ConfirmaPedido() {
             ctxDispatch({type: 'CLEAR_CART'});
             dispatch({type: 'CREAR_CORRECTO'});
             localStorage.removeItem('cartItems');
+            console.log(data);
             toast.success('Orden creada correctamente');
-            Navigate(`/`);
+            Navigate(`/order/${data._id}`);
         }catch(error){
             dispatch({type: 'CREAR_ERROR'})
             toast.error(getErrorMsj(error));
