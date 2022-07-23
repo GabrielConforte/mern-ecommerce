@@ -1,20 +1,19 @@
 import ProductosDaoMongoDB from "./productos/ProductosDaoMongoDB.js";
 import UserDaoMongoDB from "./user/UserDaoMongoDB.js";
-//import AdminDaoMongoDB from "./admin/AdminDaoMongoDB.js";
+import OrdenDaoMongoDB from "./ordenes/OrdenDaoMongoDB.js";
 
 let productosDao;
-let isAdmin;
+let ordenesDao;
 let userDao;
 
-		
-			productosDao = new ProductosDaoMongoDB();
-			userDao = new UserDaoMongoDB();
-			//isAdmin = new AdminDaoMongoDB();
+	productosDao = new ProductosDaoMongoDB();
+	userDao = new UserDaoMongoDB();
+	ordenesDao = new OrdenDaoMongoDB();
 
 		const daos = {
 			productosDao,
 			userDao,
-			//isAdmin,
+			ordenesDao
 		};
 		
 

@@ -19,7 +19,7 @@ export default function Carrito() {
     const {
         cart: { items },
       } = state;
-
+      console.log(items);
     const updateCart = async (item, cant) => {
         const { data } = await axios.get(`/api/product/${item._id}`);
         if(cant === data.stock){

@@ -63,6 +63,12 @@ function reducer(state, action) {
                 ...state.cart,
                 metodoPago: action.payload
               } };
+        case "CLEAR_CART":
+          return { ...state,
+            cart: {
+                items: [],
+            } };
+
         default:
             return state;
     }

@@ -7,7 +7,7 @@ export default function CheckoutProgress(props) {
         <Col className={props.step1 ? 'active' : ''}><b>Ingresar</b></Col>
         <Col className={props.step2 ? 'active' : ''}><b>Envio</b></Col>
         <Col className={props.step3 ? 'active' : ''}><b>Pago</b></Col>
-        <Col className={props.step4 ? 'active' : ''}><b>Confirmacion </b><i class="fa-solid fa-flag-checkered"></i></Col>
+        <Col className={props.step4 ? 'active' : ''}><b>Confirmacion </b><i className="fa-solid fa-flag-checkered"></i></Col>
         
     </Row>
   )
