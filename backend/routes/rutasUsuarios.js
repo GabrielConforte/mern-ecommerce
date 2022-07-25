@@ -68,7 +68,7 @@ userRouter.post(
     ));
 
     userRouter.put('/', isAuth, expressAsyncHandler(async (req, res) => {
-        const user = await userDao.findById(req.user._id);
+        const user = await userDao.getById(req.user._id);
         if (user) {
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
