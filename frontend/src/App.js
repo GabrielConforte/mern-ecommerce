@@ -25,6 +25,7 @@ import Shipping from './screens/Shipping';
 import MetodoPago from './screens/MetodoPago';
 import ConfirmaPedido from './screens/ConfirmaPedido';
 import OrdenPantalla from './screens/OrdenPantalla';
+import HistorialPedidos from './screens/HistorialPedidos';
 
 
 function App() {
@@ -56,7 +57,8 @@ function App() {
           <Route path="/singup" element={<SingUp/>} />
           <Route path="/payment" element={<MetodoPago/>} />
           <Route path="/confirmation" element={<ConfirmaPedido/>} />
-          <Route path="/order/:id" element={<OrdenPantalla/>} />
+          <Route path="/orders/:id" element={<OrdenPantalla/>} />
+          <Route path="/history" element={<HistorialPedidos/>} />
         </Routes>
         </Container>
         </main>

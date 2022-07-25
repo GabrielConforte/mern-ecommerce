@@ -9,8 +9,9 @@ const userRouter = express.Router();
 import daos from "../models/daos/index.js";
 const { userDao } = daos;
 
-userRouter.post("/signin", expressAsyncHandler(async (req, res) => {
+userRouter.post("/signin", expressAsyncHandler(async (req, res) => { console.log(req.body);
         const user = await userDao.getUserByEmail(req.body.email);
+        console.log (user);
             if (user) {
                 if (bcrypt.compareSync(req.body.password, user.password)) {
     //hace las comparaciones de datos, si es correcto genera el token y lo devuelve junto con el usuario

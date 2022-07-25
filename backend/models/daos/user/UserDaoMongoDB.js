@@ -26,7 +26,17 @@ class UserDaoMongoDB extends ContenedorMongoDB {
         )
     }
     getUserByEmail(email) {
-        return this.collection.findOne({email: email}).then(usuario => {
+        return this.collection.findOne({"email": email}).then(usuario => {
+                if (usuario !== null) {
+                    return usuario;
+                } else {
+                    return null;
+                }
+            }
+        )
+    } 
+    getUserById(userId) {
+        return this.collection.findOne({"_id": userId}).then(usuario => {
                 if (usuario !== null) {
                     return usuario;
                 } else {
@@ -35,6 +45,5 @@ class UserDaoMongoDB extends ContenedorMongoDB {
             }
         )
     }
-
 }
 export default UserDaoMongoDB;

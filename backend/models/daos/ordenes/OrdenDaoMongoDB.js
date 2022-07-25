@@ -3,16 +3,14 @@ import  ContenedorMongoDB from "../../ContenedorMongoDB.js";
 
 class OrdenDaoMongoDB extends ContenedorMongoDB {
 	constructor() {
-		super("Orden", {
+		super("Orders", {
 			pedido: [],
 			usuario: {type: String, required: true},
 			metodoPago: {type: String, required: true},
 			envio: {type: Object, required: true},
-			total: {type: Number, required: true},
-		}
-		,
-		{
-			timestamps: true,
+			total: {type: Number, required: true},timestamps: {type: Date, default: Date.now},
+			statusEnv: {type: String, required: true, default: "Pendiente"},
+			statusPag: {type: String, required: true, default: "Pendiente"},
 		}
 		);
 	}

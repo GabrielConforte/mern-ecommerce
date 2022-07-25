@@ -25,7 +25,7 @@ export const isAuth = (req, res, next) => {
         const token = authorization.slice(7, authorization.length);//eliminamos el Bearer de la cadena
         jwt.verify(token, key, (err, decoded) => {
             if (err) {
-                res.status(401).send({ message: "token invalido" });
+                res.status(401).send({ message: "token invalido, compruebe su conexion o vuelva a loguearse" });
             } else {
                 req.user = decoded;
                 next();

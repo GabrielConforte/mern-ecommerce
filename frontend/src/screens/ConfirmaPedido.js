@@ -27,7 +27,7 @@ export default function ConfirmaPedido() {
     const {state, dispatch: ctxDispatch} = useContext(Store);
     const { cart, userInfo} = state;
     const [total, setTotal] = useState(0);
-    const [{loading, error}, dispatch] = useReducer(reducer, {loading: false, error: ' '});
+    const [{loading}, dispatch] = useReducer(reducer, {loading: false, error: ' '});
 
     const enviarOrden = async () => {
         try{    
@@ -37,7 +37,7 @@ export default function ConfirmaPedido() {
                 metodoPago: cart.metodoPago.metodo,
                 usuario: userInfo._id,
                 total: total,
-                envio: cart.shipping
+                envio: cart.shipping,
             },
             {
                 headers: {
@@ -110,7 +110,7 @@ export default function ConfirmaPedido() {
                                 return (
                                     <Col className="rounded mb-3"key={item._id}>
                                     <ListGroup.Item >
-                                        <img src={item.image} className="img-thumb rounded"></img>
+                                        <img src={item.image} className="img-thumb rounded" alt={item.nombre}></img>
                                         <Link to={`/product/${item.slug}`}>{item.name}</Link> x {item.cant} <br/>
                                         <strong>Subtotal: </strong> ${item.price * item.cant} <br/>
                                     </ListGroup.Item></Col>

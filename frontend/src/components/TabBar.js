@@ -30,7 +30,7 @@ export default function TabBar(props) {
                        Perfil
                     </Link>
                     <NavDropdown.Divider/>
-                    <Link className='p-2' to="/pedidos">
+                    <Link className='p-2' to="/history">
                         Pedidos
                     </Link >
                     <NavDropdown.Divider/>
