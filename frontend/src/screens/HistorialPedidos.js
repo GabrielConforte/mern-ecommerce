@@ -37,7 +37,7 @@ export default function HistorialPedidos() {
         const fetchData = async () => {
             try {
                 const { data }= await axios.get(`http://localhost:5000/api/orders/user/${userInfo._id}`,
-                { headers: { Authorization: `Bearer ${userInfo.token}` } });
+                { headers: { autorizacion: `Bearer ${userInfo.token}` } });
                 dispatch({ type: 'FETCH_SUCCESS', payload: data });
             } catch (error) {
                 dispatch({ type: 'FETCH_FAILURE', payload: getErrorMsj(error) });

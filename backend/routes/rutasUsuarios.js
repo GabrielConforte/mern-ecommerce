@@ -1,7 +1,7 @@
 //dependencias
 import express  from "express";
 import bcrypt from "bcryptjs";
-import { generateToken } from "../config/generateToken.js";
+import { generateToken, isAuth } from "../config/generateToken.js";
 import expressAsyncHandler from 'express-async-handler';
 
 //importar modelos
@@ -50,5 +50,44 @@ userRouter.post(
             );
         }
     ));
+
+    userRouter.get("/", expressAsyncHandler(async (req, res) => {
+        const users = await userDao.getAll();
+        res.send(users);
+    }
+    ));
+
+    userRouter.get("/:id", expressAsyncHandler(async (req, res) => {
+        const user = await userDao.getById(req.params.id);
+        if (user) {
+            res.send(user);
+        } else {
+            res.status(404).send({ message: 'no se pudo encontrar el usuario' });
+        }
+    }
+    ));
+
+    userRouter.put('/', isAuth, expressAsyncHandler(async (req, res) => {
+        const user = await userDao.findById(req.user._id);
+        if (user) {
+            user.name = req.body.name || user.name;
+            user.email = req.body.email || user.email;
+            if(req.body.password) {
+                user.password = bcrypt.hashSync(req.body.password);
+            }
+            const updatedUser = await userDao.save(user);
+            res.send({
+                _id: updatedUser._id,
+                name: updatedUser.name,
+                email: updatedUser.email,
+                isAdmin: updatedUser.isAdmin,
+                token: generateToken(updatedUser)
+            });
+        } else {
+            res.status(404).send({ message: 'no se pudo actualizar el usuario' });
+        }
+    }
+    ));
+
 
 export default userRouter;

@@ -26,6 +26,7 @@ import MetodoPago from './screens/MetodoPago';
 import ConfirmaPedido from './screens/ConfirmaPedido';
 import OrdenPantalla from './screens/OrdenPantalla';
 import HistorialPedidos from './screens/HistorialPedidos';
+import Perfil from './screens/Perfil';
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
           <Route path="/confirmation" element={<ConfirmaPedido/>} />
           <Route path="/orders/:id" element={<OrdenPantalla/>} />
           <Route path="/history" element={<HistorialPedidos/>} />
+          <Route path="/perfil" element={<Perfil/>} />
         </Routes>
         </Container>
         </main>
