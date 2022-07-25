@@ -1,6 +1,7 @@
 //dependencias
 import express  from "express";
 import logger  from "./config/logger.js";
+import path from "path";
 const app = express();
 import cors from "cors";
 //puertos
@@ -19,18 +20,22 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-//mensajes de error
-app.use((err, req, res, next) => {
-    logger.error(err.stack);
-    res.status(500).send({message: err.message});
-});
 
 //rutas
 app.use('/api/product', rutasProductos);
 app.use('/api/users', rutasUsuarios);
 app.use('/api/orders', rutasOrdenes);
-//app.use('/seed', seed);
 
-
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
+}
+);
+//mensajes de error
+app.use((err, req, res, next) => {
+    logger.error(err.stack);
+    res.status(500).send({message: err.message});
+});
 
 app.listen(port, () => logger.info(`Server iniciado desde  http://localhost:${port}`));
