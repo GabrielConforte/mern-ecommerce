@@ -20,7 +20,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-
 //rutas
 app.use('/api/product', rutasProductos);
 app.use('/api/users', rutasUsuarios);
