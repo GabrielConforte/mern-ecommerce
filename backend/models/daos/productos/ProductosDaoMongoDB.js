@@ -18,6 +18,22 @@ class ProductosDaoMongoDB extends ContenedorMongoDB {
 		}
 		);
 	}
+	getWithFilters = async (filters) => {
+		const products = await this.collection.find({
+			...filters.query,
+			...filters.categoria,
+			...filters.precio,
+			...filters.rating,
+		}).sort(filters.orden).skip(filters.paginaTam * filters.pagina - 1 ).limit(filters.paginaTam)
+		const contProducts = await this.collection.countDocuments({
+			...filters.query,
+			...filters.categoria,
+			...filters.precio,
+			...filters.rating,
+		});
+		return {products,contProducts, pagina: filters.pagina, paginas: Math.ceil(contProducts / filters.paginaTam)};
+	}
+
 }
 
 export default ProductosDaoMongoDB;

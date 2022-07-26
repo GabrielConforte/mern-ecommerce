@@ -28,6 +28,8 @@ import OrdenPantalla from './screens/OrdenPantalla';
 import HistorialPedidos from './screens/HistorialPedidos';
 import Perfil from './screens/Perfil';
 import { Nav } from 'react-bootstrap';
+import SearchBox from './components/SearchBox';
+import Busqueda from './screens/Busqueda';
 
 
 function App() {
@@ -39,18 +41,20 @@ function App() {
       <header className="App-header rounde">
         <Navbar className='rounded' bg="" variant="dark">
             <Container>
-              <botton className="btn-custom btn-cart" onClick={()=> setActiveTab(!activeTab)}>
+              <botton className="btn-custom btn-chat" onClick={()=> setActiveTab(!activeTab)}>
               <i class="fa-solid fa-message"></i>
               </botton>
-              <LinkContainer to="/">
+              <LinkContainer className="ms-3"to="/">
                 <Navbar.Brand>Hobbie House <i className="fa-solid fa-chess-knight"></i></Navbar.Brand>
               </LinkContainer>
+              <SearchBox></SearchBox>
+              
               <TabBar/>
             </Container>
           </Navbar>
         
       </header>
-      <div className={activeTab ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column' :
+      <div className={activeTab ? ' rounded active-nav side-navbar d-flex justify-content-between flex-wrap flex-column' :
           'side-navbar d-flex justify-content-between flex-wrap flex-column'}>
 
           <Nav className='flex-column text-white w-100 p-2'>
@@ -73,6 +77,7 @@ function App() {
           <Route path="/orders/:id" element={<OrdenPantalla/>} />
           <Route path="/history" element={<HistorialPedidos/>} />
           <Route path="/perfil" element={<Perfil/>} />
+          <Route path="/search" element={<Busqueda/>} />
         </Routes>
         </Container>
         </main>

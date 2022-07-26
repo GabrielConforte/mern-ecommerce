@@ -20,17 +20,18 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
+
 //rutas
 app.use('/api/product', rutasProductos);
 app.use('/api/users', rutasUsuarios);
 app.use('/api/orders', rutasOrdenes);
 
 const __dirname = path.resolve();
-app.use(express.static(path.join(__dirname, 'frontend/build')));
+/* app.use(express.static(path.join(__dirname, 'frontend/build')));
 app.use('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 }
-);
+); */
 //mensajes de error
 app.use((err, req, res, next) => {
     logger.error(err.stack);

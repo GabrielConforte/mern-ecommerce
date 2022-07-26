@@ -2,7 +2,7 @@ import express from "express";
 import daos from "../models/daos/index.js"
 const { productosDao } = daos;
 const rutasProductos = express.Router();
-import logger from "../config/logger.js";
+import expressAsyncHandler from "express-async-handler";
 
 rutasProductos.get("/", async (req, res) => {
     let productos = await productosDao.getAll();
@@ -58,5 +58,21 @@ rutasProductos.delete("/:id", async (req, res) => {
         }
     }
     );
+
+
+rutasProductos.get("/search", expressAsyncHandler(async (req, res) => {
+    const filtros = {
+    paginaTam:  req.query.paginaTam || 3,
+    pagina: req.query.pagina || 1,
+    categoria: req.query.categoria || "",
+    precio: req.query.precio || "",
+    rating : req.query.rating || "",
+    query: req.query.query || "",
+    orden: req.query.orden || "",
+}
+    const productos = await productosDao.getWithFilters(filtros);
+    res.send(productos);
+})
+)
 
 export default rutasProductos;

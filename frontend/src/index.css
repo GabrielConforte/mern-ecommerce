@@ -83,6 +83,12 @@ main{
   border-color: rgb(26, 24, 24);
 }
 
+
+.btn-chat{
+  background-color: rgb(226, 113, 37);
+  border-color: rgb(26, 24, 24);
+}
+
 .btn-mp{
   background-color: rgb(56, 196, 221);
   border-color: rgb(26, 24, 24);
