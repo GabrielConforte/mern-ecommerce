@@ -23,7 +23,15 @@ io.on('connection', (socket) => {
     }
     );
     socket.on('mensaje', (data) => {
-        io.emit('mensaje', data);
+        const mensajeGuardar = {
+            mensaje: data.mensaje,
+            usuario: data.user,
+            idUsuario: data.userId,
+        };
+        mensajesDao.save(mensajeGuardar).then(mensaje => {
+            io.emit('mensaje', mensaje);
+        }
+        );
     }
     );
 
