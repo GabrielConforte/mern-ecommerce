@@ -2,12 +2,13 @@
 import express  from "express";
 import logger  from "./config/logger.js";
 import  varEnv  from "./config/index.js";
-const production = varEnv.config.production || false;
+const app = express();
 const __dirname = path.resolve();
 import path from "path";
-const app = express();
 import cors from "cors";
-const port = process.env.PORT || 5000;
+const production = varEnv.config.production || false;
+const port = varEnv.config.port || 5000;
+const port_socket = varEnv.config.port_socket || 5001;
 import  { sockets } from "./controller/socket.js";
 
 //modelos y rutas
@@ -48,5 +49,5 @@ app.listen(port, () => logger.info(`Server iniciado desde  http://localhost:${po
 import http from "http";
 const servidor = http.createServer(app);
 
-servidor.listen(5001);
+servidor.listen(port_socket);
 sockets(servidor)

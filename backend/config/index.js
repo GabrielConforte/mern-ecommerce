@@ -4,6 +4,7 @@ dotenv.config();
 
 let config = {
     port: process.env.PORT,
+    port_socket: process.env.PORT_SOCKET,
     cors: process.env.CORS,
     production: process.env.NODE_ENV || false,
 }
