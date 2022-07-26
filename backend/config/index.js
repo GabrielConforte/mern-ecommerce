@@ -6,6 +6,7 @@ let config = {
     port: process.env.PORT,
     cors: process.env.CORS,
     dev: process.env.NODE_ENV,
+    production: process.env.NODE_ENV === true,
 }
 
 let mongo_db = {

@@ -14,6 +14,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import {LinkContainer} from 'react-router-bootstrap';
 import TabBar from './components/TabBar';
+import AdminRuteo from './components/AdminRuteo';
+import ProtectorRuteo from './components/ProtectorRuteo';
+import { Nav } from 'react-bootstrap';
+import SearchBox from './components/SearchBox';
+
 
 //paginas
 import Home from './screens/Home';
@@ -27,9 +32,9 @@ import ConfirmaPedido from './screens/ConfirmaPedido';
 import OrdenPantalla from './screens/OrdenPantalla';
 import HistorialPedidos from './screens/HistorialPedidos';
 import Perfil from './screens/Perfil';
-import { Nav } from 'react-bootstrap';
-import SearchBox from './components/SearchBox';
 import Busqueda from './screens/Busqueda';
+import Escritorio from './screens/Escritorio';
+import ChatBox from './components/ChatBox';
 
 
 function App() {
@@ -41,14 +46,13 @@ function App() {
       <header className="App-header rounde">
         <Navbar className='rounded' bg="" variant="dark">
             <Container>
-              <botton className="btn-custom btn-chat" onClick={()=> setActiveTab(!activeTab)}>
-              <i class="fa-solid fa-message"></i>
-              </botton>
+              <button className="btn-custom btn-chat" onClick={()=> setActiveTab(!activeTab)}>
+              <i className="fa-solid fa-message"></i>
+              </button>
               <LinkContainer className="ms-3"to="/">
                 <Navbar.Brand>Hobbie House <i className="fa-solid fa-chess-knight"></i></Navbar.Brand>
               </LinkContainer>
               <SearchBox></SearchBox>
-              
               <TabBar/>
             </Container>
           </Navbar>
@@ -61,6 +65,9 @@ function App() {
             <Nav.Item>
               <strong>CHAT</strong>
             </Nav.Item>
+            <Nav.Item>
+            <ChatBox></ChatBox>
+              </Nav.Item>
           </Nav>
           </div>
       <main className='mt-2'>
@@ -74,9 +81,10 @@ function App() {
           <Route path="/singup" element={<SingUp/>} />
           <Route path="/payment" element={<MetodoPago/>} />
           <Route path="/confirmation" element={<ConfirmaPedido/>} />
-          <Route path="/orders/:id" element={<OrdenPantalla/>} />
-          <Route path="/history" element={<HistorialPedidos/>} />
-          <Route path="/perfil" element={<Perfil/>} />
+          <Route path="/orders/:id" element={<ProtectorRuteo><OrdenPantalla/></ProtectorRuteo>} />
+          <Route path="/history" element={<ProtectorRuteo><HistorialPedidos/></ProtectorRuteo>} />
+          <Route path="/perfil" element={<ProtectorRuteo><Perfil/></ProtectorRuteo>}/>
+          <Route path="/admin/escritorio" element={<AdminRuteo><Escritorio/></AdminRuteo>}/>
           <Route path="/search" element={<Busqueda/>} />
         </Routes>
         </Container>
