@@ -4,7 +4,7 @@ import './index.css';
 
 //router y servicios
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-//import { useContext } from 'react';
+import { useState} from 'react';
 //import { Store } from './utils/Store';
 
 //componentes
@@ -27,18 +27,21 @@ import ConfirmaPedido from './screens/ConfirmaPedido';
 import OrdenPantalla from './screens/OrdenPantalla';
 import HistorialPedidos from './screens/HistorialPedidos';
 import Perfil from './screens/Perfil';
+import { Nav } from 'react-bootstrap';
 
 
 function App() {
-
-  //const {state} = useContext(Store);
+ const [activeTab, setActiveTab] = useState(false);
   return (
     <BrowserRouter>
-    <div className='d-flex flex-column site-content'>
+    <div className={activeTab  ? 'd-flex flex-column site-container active-cont' : 'd-flex flex-column site-containe'}>
       <ToastContainer position='top-center' limit={1}/>
       <header className="App-header rounde">
         <Navbar className='rounded' bg="" variant="dark">
             <Container>
+              <botton className="btn-custom btn-cart" onClick={()=> setActiveTab(!activeTab)}>
+              <i class="fa-solid fa-message"></i>
+              </botton>
               <LinkContainer to="/">
                 <Navbar.Brand>Hobbie House <i className="fa-solid fa-chess-knight"></i></Navbar.Brand>
               </LinkContainer>
@@ -47,6 +50,15 @@ function App() {
           </Navbar>
         
       </header>
+      <div className={activeTab ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column' :
+          'side-navbar d-flex justify-content-between flex-wrap flex-column'}>
+
+          <Nav className='flex-column text-white w-100 p-2'>
+            <Nav.Item>
+              <strong>CHAT</strong>
+            </Nav.Item>
+          </Nav>
+          </div>
       <main className='mt-2'>
         <Container>
         <Routes>
