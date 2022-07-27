@@ -50,7 +50,8 @@ io.on('connection', (socket) => {
         );
     }
     );
-    
+
+
     socket.on('todosMensajes', () => {
         mensajesDao.getAll().then(mensajes => {
             io.emit('todosMensajes', mensajes);

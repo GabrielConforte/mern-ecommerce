@@ -6,7 +6,6 @@ const app = express();
 const __dirname = path.resolve();
 import path from "path";
 import cors from "cors";
-console.log(varEnv);
 const production = varEnv.config.production || false;
 const port = varEnv.config.port || 5000;
 const port_socket = varEnv.config.port_socket || 5001;
@@ -16,7 +15,6 @@ import  { sockets } from "./controller/socket.js";
 import rutasProductos from "./routes/rutasProductos.js";
 import rutasUsuarios from "./routes/rutasUsuarios.js";
 import rutasOrdenes from "./routes/rutasOrdenes.js";
-import rutasMensajes from "./routes/rutasMensajes.js";
 
 //middlewares
 app.use(express.static('public'));
