@@ -59,7 +59,6 @@ io.on('connection', (socket) => {
     );
 
     socket.on('mensajesAdmin', (data) => {
-        console.log(data);
         const mensajeGuardar = {
             mensaje: data.mensaje,
             usuario: "Admin",

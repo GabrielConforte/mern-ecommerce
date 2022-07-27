@@ -41,6 +41,7 @@ export default function ChatBox() {
   const submit = (e) => {
     e.preventDefault();
     Socket.emit('mensaje', {user: user.name, mensaje: mensaje, userId: user._id});
+    setMensaje('');
   }
 
   return (
