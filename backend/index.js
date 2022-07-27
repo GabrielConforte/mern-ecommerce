@@ -6,7 +6,7 @@ const app = express();
 const __dirname = path.resolve();
 import path from "path";
 import cors from "cors";
-const production = varEnv.config.production || false;
+const production = varEnv.config.NODE_ENV || false;
 const port = varEnv.config.port || 5000;
 const port_socket = varEnv.config.port_socket || 5001;
 import  { sockets } from "./controller/socket.js";

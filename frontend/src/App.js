@@ -58,16 +58,12 @@ function App() {
           </Navbar>
         
       </header>
-      <div className={activeTab ? ' rounded active-nav side-navbar d-flex justify-content-between flex-wrap flex-column' :
+      <div className={activeTab ? ' active-nav side-navbar justify-content-between flex-wrap flex-column' :
           'side-navbar d-flex justify-content-between flex-wrap flex-column'}>
 
           <Nav className='flex-column text-white w-100 p-2'>
-            <Nav.Item>
               <strong>CHAT</strong>
-            </Nav.Item>
-            <Nav.Item>
             <ChatBox></ChatBox>
-              </Nav.Item>
           </Nav>
           </div>
       <main className='mt-2'>

@@ -2,59 +2,65 @@
 import React, {useState, useEffect, useRef} from 'react'
 import { Form } from 'react-bootstrap';
 import Socket from './Socket';
+import { toast } from 'react-toastify';
 
 export default function ChatBox() {
 
-/*   function animalAleatorio() {
-    let animal = Math.floor(Math.random() * 4) + 1;
-    switch (animal) {
-      case 1:
-        return 'Perro';
-      case 2:
-        return 'Gato';
-      case 3:
-        return 'Caballo';
-      case 4:
-        return 'Cabra';
-      default:
-        return 'Humano';
-    }
-  }
-  
-function makeid() { let text = ""; let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"; for( let i=0; i < 5; i++ ) text += possible.charAt(Math.floor(Math.random() * possible.length)); return text; }
-  */
-
-  const user = JSON.parse(localStorage.getItem('userInfo'));
-  const userName = user.name || 'Anonimo';
+  const user = (JSON.parse(localStorage.getItem('userInfo'))) || {name: undefined, id: undefined};
   const [mensaje, setMensaje] = useState('');
   const [mensajeLista, setMensajesLista] = useState([]);
 
-  useEffect(() => {
-    Socket.emit('conectado', {user: userName, userId: user._id});
-    
+  const handler = (e) => {
+    e.preventDefault();
+    toast.error('Ingresa con tu usuario para enviar mensajes');
+  }
+
+  //emite el conectado al servidor
+/*   useEffect(() => {
+    Socket.emit('conectado', {user: user.name, userId: user._id});
   }, [user]);
+ */
+  //emite por data el id del usuario y se le envia sus mensajes con su id
 
   useEffect(() => {
-    Socket.on('mensaje', (data) => {
-      setMensajesLista([...mensajeLista, data]);
+    Socket.emit('mensajesUser', {user: user._id});
+    Socket.on('mensajesUser', (data) => {
+      setMensajesLista(data);
     }
-    , [mensajeLista]);
+    );
+    if(localStorage.getItem('userInfo') === null){
+      setMensajesLista([]);
+    return () => {
+      Socket.off();
+    };}
   }
-  , [mensajeLista]);
+  , [mensaje, user]);
+
 
 
   const submit = (e) => {
     e.preventDefault();
-    Socket.emit('mensaje', {user: userName, mensaje: mensaje, userId: user._id});
+    Socket.emit('mensaje', {user: user.name, mensaje: mensaje, userId: user._id});
   }
 
   return (
     <div>
+      <>
+      <div className="chatBox">
+        {mensajeLista.reverse().map((mensaje, index) => (
+          <div key={index}>
+            <span><b>{mensaje.usuario}: </b></span>
+            <span> {mensaje.mensaje}</span>
+            <span> <i>{mensaje.fecha}</i></span>
+          </div>
+        ))}
+      </div>
        <Form onSubmit={submit}>
         <Form.Label>Mensaje</Form.Label>
           <Form.Control type="text" placeholder="Escribe tu mensaje" value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
-          <button className="mt-1 btn-cart btn-custom">enviar</button>
-       </Form>
+          {user.name === undefined ? <button onClick={handler} className="mt-1 btn-cart btn-custom">enviar</button> : <button className="mt-1 btn-cart btn-custom">enviar</button>}
+          
+       </Form></>
     </div>
   )
 }

@@ -157,3 +157,24 @@ main{
 .active-nav {
   left: 0;
 }
+
+/*Chat box*/
+
+.chatBox{
+  width: 100%;
+  height: 70vh;
+  background-color: #dbdbdb;
+  color: #100901;
+  top: 0;
+  transition: 0.5s;
+  overflow-y: scroll;
+}
+
+.chatBox b{
+  color: chocolate;
+}
+
+.chatBox i{
+  color: green;
+  font-size: smaller;
+}

@@ -44,7 +44,6 @@ class ContenedorMongoDB {
 	async save(objeto) {
 		try {
 			let a = await this.collection.create(objeto);
-			console.log(a._id);
 			return a;
 		} catch (error) {
 			if (error.code == 11000) {

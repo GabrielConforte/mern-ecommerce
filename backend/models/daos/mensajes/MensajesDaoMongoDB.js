@@ -23,6 +23,7 @@ class MensajesDaoMongoDB extends ContenedorMongoDB {
             return b.fecha - a.fecha;
         }
         );
+        //filtrar todos los mjs que no sean userId === idUsuario
         return mensajes;
     }
 

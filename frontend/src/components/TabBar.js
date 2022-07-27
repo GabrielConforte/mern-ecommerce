@@ -48,10 +48,12 @@ export default function TabBar() {
                     </LinkContainer>
                 </NavDropdown>
                 </>)
-                :
+                :<>
                 <LinkContainer to="/singin" className="nav-link">
-                  <b>Ingresar</b>  <i className="fa-solid fa-user">  </i>
-                    </LinkContainer>
+                    <Nav.Link>
+                  <i className="fa-solid fa-user"></i><b>Ingresar</b>
+                          </Nav.Link>
+                    </LinkContainer></>
                         }
             {userInfo && userInfo.isAdmin && (<>
             <NavDropdown title="Admin" id="admin-nav-dropdown" menuVariant="dark">
